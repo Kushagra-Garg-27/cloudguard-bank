@@ -43,7 +43,6 @@ const VIEW_TITLES: Record<DashboardView, { num: string; title: string }> = {
   compliance: { num: '07', title: 'Compliance & CloudTrail Auditor' },
   monitoring: { num: '08', title: 'CloudWatch Telemetry & SNS Alerts' },
   finops: { num: '09', title: 'FinOps 71.6% Cost Optimization' },
-  syllabus: { num: '10', title: 'DS3203A Syllabus & Viva Proof' },
 };
 
 export const EditorialTopBar: React.FC<EditorialTopBarProps> = ({

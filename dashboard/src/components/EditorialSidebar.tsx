@@ -11,7 +11,6 @@ import {
   FileCheck2,
   Activity,
   PiggyBank,
-  GraduationCap,
   ChevronRight,
   ShieldCheck,
   Radio,
@@ -28,8 +27,7 @@ export type DashboardView =
   | 'database'
   | 'compliance'
   | 'monitoring'
-  | 'finops'
-  | 'syllabus';
+  | 'finops';
 
 interface NavItem {
   id: DashboardView;
@@ -49,7 +47,6 @@ const NAV_ITEMS: NavItem[] = [
   { id: 'compliance', number: '07', label: 'Compliance & Audit', icon: FileCheck2 },
   { id: 'monitoring', number: '08', label: 'Monitoring & Alerts', icon: Activity },
   { id: 'finops', number: '09', label: 'FinOps Optimizer', icon: PiggyBank, badge: '71.6%' },
-  { id: 'syllabus', number: '10', label: 'Syllabus & Viva', icon: GraduationCap, badge: 'DS3203A' },
 ];
 
 interface EditorialSidebarProps {

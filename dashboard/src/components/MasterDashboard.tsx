@@ -12,7 +12,6 @@ import { PolyglotDbViewer } from './PolyglotDbViewer';
 import { ComplianceAuditView } from './ComplianceAuditView';
 import { MonitoringAlertsView } from './MonitoringAlertsView';
 import { FinOpsView } from './FinOpsView';
-import { SyllabusVivaView } from './SyllabusVivaView';
 
 import {
   INITIAL_ACCOUNTS,
@@ -41,7 +40,7 @@ export default function MasterDashboard() {
       const v = params.get('view') as DashboardView;
       if (v && [
         'overview', 'transactions', 'fraud', 'queue', 'infrastructure',
-        'database', 'compliance', 'monitoring', 'finops', 'syllabus'
+        'database', 'compliance', 'monitoring', 'finops'
       ].includes(v)) {
         setCurrentView(v);
       }
@@ -327,10 +326,6 @@ export default function MasterDashboard() {
           {currentView === 'finops' && (
             <FinOpsView />
           )}
-
-          {currentView === 'syllabus' && (
-            <SyllabusVivaView />
-          )}
         </main>
 
         {/* 3. Editorial Footer System Strip */}
@@ -339,7 +334,7 @@ export default function MasterDashboard() {
             <span className="w-2 h-2 rounded-full bg-[#236B43]" />
             <span className="font-bold text-[#171717] font-sans">CloudGuard Bank Control Platform</span>
             <span className="text-[#D9D6CF]">•</span>
-            <span>DS3203A Cloud Computing Curricular Architecture</span>
+            <span>Cloud Computing Systems Architecture</span>
           </div>
 
           <div className="flex flex-wrap items-center gap-3 text-[11px]">
