@@ -1,0 +1,28 @@
+{
+  "name": "cloudguard-ec2-ingestion-api",
+  "version": "1.0.0",
+  "description": "CloudGuard Bank - High-Throughput Transaction Ingestion API (EC2 / ALB Tier)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-cloudwatch": "^3.540.0",
+    "@aws-sdk/client-sqs": "^3.540.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  },
+  "keywords": [
+    "aws",
+    "ec2",
+    "sqs",
+    "alb",
+    "cloudwatch",
+    "fintech",
+    "cloudguard"
+  ],
+  "author": "CloudGuard Engineering",
+  "license": "Apache-2.0"
+}

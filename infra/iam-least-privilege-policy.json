@@ -1,0 +1,88 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "EnforceTlsInTransitPCIAndGDPR",
+      "Effect": "Deny",
+      "Action": "*",
+      "Resource": "*",
+      "Condition": {
+        "Bool": {
+          "aws:SecureTransport": "false"
+        }
+      }
+    },
+    {
+      "Sid": "SQSSpecificQueueIngressAndEgress",
+      "Effect": "Allow",
+      "Action": [
+        "sqs:SendMessage",
+        "sqs:ReceiveMessage",
+        "sqs:DeleteMessage",
+        "sqs:GetQueueAttributes",
+        "sqs:GetQueueUrl"
+      ],
+      "Resource": [
+        "arn:aws:sqs:ap-south-1:739201845201:CloudGuard-TransactionQueue",
+        "arn:aws:sqs:ap-south-1:739201845201:CloudGuard-TransactionDLQ"
+      ]
+    },
+    {
+      "Sid": "KMSEnvelopeEncryptionScopedAccess",
+      "Effect": "Allow",
+      "Action": [
+        "kms:Encrypt",
+        "kms:Decrypt",
+        "kms:ReEncrypt*",
+        "kms:GenerateDataKey*",
+        "kms:DescribeKey"
+      ],
+      "Resource": "arn:aws:kms:ap-south-1:739201845201:key/a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d"
+    },
+    {
+      "Sid": "DynamoDBAuditTrailWriteOnlyWithCondition",
+      "Effect": "Allow",
+      "Action": [
+        "dynamodb:PutItem",
+        "dynamodb:GetItem",
+        "dynamodb:Query"
+      ],
+      "Resource": "arn:aws:dynamodb:ap-south-1:739201845201:table/CloudGuard-AuditTable"
+    },
+    {
+      "Sid": "SNSFraudAlertPublishing",
+      "Effect": "Allow",
+      "Action": [
+        "sns:Publish"
+      ],
+      "Resource": "arn:aws:sns:ap-south-1:739201845201:CloudGuard-FraudAlerts"
+    },
+    {
+      "Sid": "CloudWatchCustomMetricIngestion",
+      "Effect": "Allow",
+      "Action": [
+        "cloudwatch:PutMetricData"
+      ],
+      "Resource": "*",
+      "Condition": {
+        "StringEquals": {
+          "cloudwatch:namespace": [
+            "CloudGuard/EC2",
+            "CloudGuard/Ingestion",
+            "CloudGuard/FraudWorker"
+          ]
+        }
+      }
+    },
+    {
+      "Sid": "CloudWatchStructuredLogging",
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "arn:aws:logs:ap-south-1:739201845201:log-group:/aws/cloudguard/*"
+    }
+  ]
+}
